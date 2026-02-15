@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌙 تم تعبئة الكرش بنجاح — Ramadan Meme Generator
 
-## Getting Started
+A fun, one-page Ramadan meme generator built with **Next.js 16**, **TypeScript**, and **Tailwind CSS**. Click a button, get a random Ramadan meme, and share the laughs.
 
-First, run the development server:
+## ✨ Features
+
+- 🎲 Random meme generation with one click
+- 🌙 Beautiful Ramadan night-sky theme (glassmorphism, gradients, star particles)
+- ⬇️ Download memes directly
+- 📱 Fully responsive (mobile → tablet → desktop)
+- 🔤 Arabic + English text support
+- ⚡ Fast — static assets, no database, no external APIs
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Framework | Next.js 16 (App Router) |
+| Language | TypeScript |
+| Styling | Tailwind CSS v4 |
+| Fonts | IBM Plex Sans Arabic, Inter, Poppins |
+| Deployment | Vercel |
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** 18+ and **npm**
+
+### Setup
+
+```bash
+git clone <repo-url>
+cd ramadan-karsh
+npm install
+```
+
+### Development
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Production Build
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## 🖼 Adding Meme Images
 
-To learn more about Next.js, take a look at the following resources:
+Drop your images into the `public/images/` directory:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+public/images/
+├── meme1.png
+├── meme2.png
+├── your-new-meme.jpg
+└── ...
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Supported formats**: `.jpg`, `.jpeg`, `.png`, `.gif`, `.webp`
 
-## Deploy on Vercel
+The API picks a random image from this folder each time the button is clicked.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📡 API
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### `GET /api/random-image`
+
+Returns a random image from `public/images/` with proper `Content-Type` headers and cache-busting.
+
+| Status | Response |
+|--------|----------|
+| 200 | Binary image data |
+| 404 | `{ "error": "No images found" }` |
+| 500 | `{ "error": "Internal server error" }` |
+
+## 🚢 Deploy to Vercel
+
+1. Push the repo to GitHub
+2. Connect to [Vercel](https://vercel.com)
+3. Deploy — that's it!
+
+No environment variables required.
+
+## 📄 License
+
+MIT
