@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import ShareButton from "@/components/ShareButton";
 
@@ -31,6 +31,17 @@ export default function Home() {
       }))
     );
   }, []);
+
+  /* ── Auto-scroll to image ────────────────────────── */
+  const imageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (imageUrl && imageRef.current) {
+      setTimeout(() => {
+        imageRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
+    }
+  }, [imageUrl]);
 
   const generateMeme = useCallback(async () => {
     setLoading(true);
@@ -160,6 +171,7 @@ export default function Home() {
       {/* ── Image Card ───────────────────────────────── */}
       {imageUrl && (
         <div
+          ref={imageRef}
           className="relative z-10 mt-8 w-full max-w-2xl animate-fade-in rounded-3xl border border-white/10 p-4 md:p-6"
           style={{
             background: "var(--card-gradient)",
