@@ -350,7 +350,7 @@ export default function GalleryPage() {
             <img
               src={images[modalIndex].url}
               alt={images[modalIndex].filename}
-              className="max-h-[80vh] w-auto rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
+              className="max-h-[80vh] w-auto max-w-full rounded-2xl object-contain shadow-[0_20px_60px_rgba(0,0,0,0.8)]"
             />
 
             {/* Next */}
