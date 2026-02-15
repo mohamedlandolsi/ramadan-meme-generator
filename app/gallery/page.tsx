@@ -68,6 +68,35 @@ export default function GalleryPage() {
     setModalIndex((modalIndex - 1 + images.length) % images.length);
   }, [modalIndex, images.length]);
 
+  /* ── Swipe handlers ───────────────────────────────── */
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  const minSwipeDistance = 50;
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null); // Reset touch end
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    const isRightSwipe = distance < -minSwipeDistance;
+
+    if (isLeftSwipe) {
+      goNext();
+    }
+    if (isRightSwipe) {
+      goPrev();
+    }
+  };
+
   /* ── Keyboard navigation ──────────────────────────── */
   useEffect(() => {
     if (modalIndex === null) return;
@@ -211,16 +240,16 @@ export default function GalleryPage() {
           {images.map((img, index) => (
             <div
               key={img.filename}
-              className="group relative overflow-hidden rounded-2xl border border-white/10 p-3 transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]"
+              className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 p-3 transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]"
               style={{
                 background: "var(--card-gradient)",
                 backdropFilter: "blur(10px)",
                 boxShadow:
                   "0 10px 30px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.05) inset",
               }}
+              onClick={() => openModal(index)} // Make entire card clickable
             >
               <button
-                onClick={() => openModal(index)}
                 className="w-full focus:outline-none focus-visible:ring-2 focus-visible:ring-ramadan-gold"
                 aria-label={`View meme ${index + 1}`}
               >
@@ -276,10 +305,13 @@ export default function GalleryPage() {
       {/* ── Modal Viewer ──────────────────────────────── */}
       {modalIndex !== null && images[modalIndex] && (
         <div
-          className="modal-backdrop"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeModal();
           }}
+          onTouchStart={onTouchStart}
+          onTouchMove={onTouchMove}
+          onTouchEnd={onTouchEnd}
           role="dialog"
           aria-modal="true"
           aria-label="Image viewer"
