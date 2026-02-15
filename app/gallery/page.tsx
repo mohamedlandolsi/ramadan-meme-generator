@@ -24,6 +24,7 @@ export default function GalleryPage() {
   const [error, setError] = useState<string | null>(null);
   const [stars, setStars] = useState<Star[]>([]);
   const [modalIndex, setModalIndex] = useState<number | null>(null);
+  const [visibleCount, setVisibleCount] = useState(12);
 
   /* ── Stars (client-only) ──────────────────────────── */
   useEffect(() => {
@@ -238,7 +239,7 @@ export default function GalleryPage() {
       {/* ── Image Grid ────────────────────────────────── */}
       {!loading && !error && images.length > 0 && (
         <div className="relative z-10 mx-auto grid max-w-[1400px] grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {images.map((img, index) => (
+          {images.slice(0, visibleCount).map((img, index) => (
             <div
               key={img.filename}
               className="group relative cursor-pointer overflow-hidden rounded-2xl border border-white/10 p-3 transition-all duration-300 hover:border-white/20 hover:shadow-[0_0_40px_rgba(212,175,55,0.15)]"
@@ -300,6 +301,18 @@ export default function GalleryPage() {
               </button>
             </div>
           ))}
+        </div>
+      )}
+
+      {/* ── Load More Button ──────────────────────────── */}
+      {!loading && !error && visibleCount < images.length && (
+        <div className="relative z-10 mt-12 text-center">
+          <button
+            onClick={() => setVisibleCount((prev) => prev + 12)}
+            className="cursor-pointer rounded-xl border border-white/10 bg-white/5 px-8 py-3 text-lg font-medium text-moon shadow-[0_0_20px_rgba(212,175,55,0.1)] transition-all duration-300 hover:scale-105 hover:bg-white/10 hover:shadow-[0_0_30px_rgba(212,175,55,0.2)]"
+          >
+            Load More Gems 💎
+          </button>
         </div>
       )}
 
