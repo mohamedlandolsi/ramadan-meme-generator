@@ -23,8 +23,8 @@ import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: {
-    default: "Ramadan Meme Generator - تم تعبئة الكرش بنجاح",
-    template: "%s | Ramadan Meme Generator",
+    default: "تم تعبئة الكرش بنجاح",
+    template: "%s | تم تعبئة الكرش بنجاح",
   },
   description:
     "Generate and share hilarious Ramadan-themed memes. مولد ميمز رمضان - تم تعبئة الكرش بنجاح. Free meme generator for Ramadan 2026.",
@@ -87,21 +87,9 @@ export const metadata: Metadata = {
   },
 
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/icon-16x16.png", sizes: "16x16", type: "image/png" },
-      { url: "/icon-32x32.png", sizes: "32x32", type: 'image/png' },
-    ],
-    apple: [
-      { url: "/apple-icon-180x180.png", sizes: "180x180", type: "image/png" },
-    ],
-    other: [
-      {
-        rel: "mask-icon",
-        url: "/safari-pinned-tab.svg",
-        color: "#d4af37", // ramadan-gold
-      },
-    ],
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
   },
 
   manifest: "/site.webmanifest",

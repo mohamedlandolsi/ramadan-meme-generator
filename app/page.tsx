@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import HomeClient from "@/components/HomeClient";
 
 export const metadata: Metadata = {
-  title: "Ramadan Meme Generator - تم تعبئة الكرش بنجاح 🌙",
+  title: "تم تعبئة الكرش بنجاح 🌙",
   description: "Generate hilarious Ramadan memes instantly. مبروك الكرش! The best meme generator for Ramadan 2026. Free, fast, and fun.",
   openGraph: {
     title: "Ramadan Meme Generator - تم تعبئة الكرش بنجاح 🌙",
