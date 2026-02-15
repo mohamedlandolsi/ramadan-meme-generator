@@ -19,27 +19,103 @@ const poppins = Poppins({
    sometimes has issues with Arabic subsets. We import it via a <link> tag
    in the head instead to guarantee reliable loading. */
 
+import StructuredData from "@/components/StructuredData";
+
 export const metadata: Metadata = {
-  title: "تم تعبئة الكرش بنجاح",
-  description:
-    "Generate hilarious Ramadan belly memes. مبروك الكرش! A fun meme generator for the holy month.",
-  keywords: ["ramadan", "meme", "generator", "رمضان", "كرش", "تعبئة"],
-  openGraph: {
-    title: "تم تعبئة الكرش بنجاح 🌙",
-    description: "مبروك الكرش! Generate hilarious Ramadan memes.",
-    type: "website",
-    locale: "ar_SA",
-    images: ["/og-image.png"],
+  title: {
+    default: "Ramadan Meme Generator - تم تعبئة الكرش بنجاح",
+    template: "%s | Ramadan Meme Generator",
   },
+  description:
+    "Generate and share hilarious Ramadan-themed memes. مولد ميمز رمضان - تم تعبئة الكرش بنجاح. Free meme generator for Ramadan 2026.",
+  keywords: [
+    "Ramadan",
+    "Ramadan memes",
+    "تم تعبئة الكرش بنجاح",
+    "Ramadan 2026",
+    "Islamic memes",
+    "مبروك الكرش",
+    "Ramadan Kareem",
+    "رمضان كريم",
+    "meme generator",
+    "funny Ramadan",
+    "halal memes",
+  ],
+  authors: [{ name: "Ramadan Meme Generator" }],
+  creator: "Ramadan Meme Generator",
+  publisher: "Ramadan Meme Generator",
+
+  // Open Graph
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    alternateLocale: ["ar_AR", "fr_FR"],
+    url: "https://ramadan-meme-generator.vercel.app",
+    siteName: "Ramadan Meme Generator",
+    title: "Ramadan Meme Generator - تم تعبئة الكرش بنجاح",
+    description: "Generate and share hilarious Ramadan-themed memes instantly!",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Ramadan Meme Generator",
+      },
+    ],
+  },
+
+  // Twitter Card
   twitter: {
     card: "summary_large_image",
-    title: "تم تعبئة الكرش بنجاح 🌙",
-    description: "مبروك الكرش! Generate hilarious Ramadan memes.",
+    title: "Ramadan Meme Generator - تم تعبئة الكرش بنجاح",
+    description: "Generate and share hilarious Ramadan-themed memes instantly!",
+    images: ["/twitter-image.png"],
+    creator: "@ramadanmemes",
   },
+
+  // Additional
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: [
+      { url: "/favicon.ico" },
+      { url: "/icon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/icon-32x32.png", sizes: "32x32", type: 'image/png' },
+    ],
+    apple: [
+      { url: "/apple-icon-180x180.png", sizes: "180x180", type: "image/png" },
+    ],
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/safari-pinned-tab.svg",
+        color: "#d4af37", // ramadan-gold
+      },
+    ],
+  },
+
+  manifest: "/site.webmanifest",
+
+  alternates: {
+    canonical: "https://ramadan-meme-generator.vercel.app",
+  },
+
+  other: {
+    "theme-color": "#1a0b2e", // midnight-purple
+    "color-scheme": "dark",
+    "mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-capable": "yes",
+    "apple-mobile-web-app-status-bar-style": "black-translucent",
   },
 };
 
@@ -53,7 +129,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="ltr" className={`${inter.variable} ${poppins.variable}`}>
+    <html lang="en" dir="ltr" className={`${inter.variable} ${poppins.variable}`}>
       <head>
         {/* IBM Plex Sans Arabic from Google Fonts */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -67,7 +143,10 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <StructuredData />
+        {children}
+      </body>
     </html>
   );
 }
