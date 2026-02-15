@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Link from "next/link";
+import ShareButton from "@/components/ShareButton";
 
 /* ── Star type ────────────────────────────────────── */
 interface Star {
@@ -175,10 +176,16 @@ export default function Home() {
           />
 
           {/* ── Action Buttons ─────────────────────── */}
-          <div className="mt-4 flex justify-center gap-3">
+          <div className="mt-4 flex flex-wrap justify-center gap-3">
+            <ShareButton
+              imageUrl={imageUrl}
+              imageName="ramadan-meme"
+              variant="default"
+              className="flex-1 md:flex-none"
+            />
             <button
               onClick={downloadImage}
-              className="cursor-pointer rounded-xl border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-moon transition-all duration-200 hover:bg-white/10"
+              className="flex-1 cursor-pointer items-center justify-center rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-moon shadow-[0_0_15px_rgba(212,175,55,0.1)] transition-all duration-300 hover:scale-105 hover:bg-white/10 hover:shadow-[0_0_25px_rgba(212,175,55,0.2)] md:flex-none"
               aria-label="Download this meme"
             >
               Download ⬇️

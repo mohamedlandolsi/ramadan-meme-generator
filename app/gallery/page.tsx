@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import ShareButton from "@/components/ShareButton";
 
 /* ── Types ────────────────────────────────────────── */
 interface ImageItem {
@@ -261,6 +262,15 @@ export default function GalleryPage() {
                   loading="lazy"
                 />
               </button>
+
+              {/* Share Button */}
+              <div className="absolute top-5 right-16 opacity-100 transition-opacity duration-300 md:opacity-0 md:group-hover:opacity-100">
+                <ShareButton
+                  imageUrl={img.url}
+                  imageName={img.filename.replace(/\.[^/.]+$/, "")}
+                  variant="icon-only"
+                />
+              </div>
 
               {/* Download Button */}
               <button
