@@ -22,85 +22,57 @@ const poppins = Poppins({
 import StructuredData from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: {
-    default: "تم تعبئة الكرش بنجاح",
-    template: "%s | تم تعبئة الكرش بنجاح",
-  },
-  description:
-    "Generate and share hilarious Ramadan-themed memes. مولد ميمز رمضان - تم تعبئة الكرش بنجاح. Free meme generator for Ramadan 2026.",
-  keywords: [
-    "Ramadan",
-    "Ramadan memes",
-    "تم تعبئة الكرش بنجاح",
-    "Ramadan 2026",
-    "Islamic memes",
-    "مبروك الكرش",
-    "Ramadan Kareem",
-    "رمضان كريم",
-    "meme generator",
-    "funny Ramadan",
-    "halal memes",
-  ],
-  authors: [{ name: "Ramadan Meme Generator" }],
-  creator: "Ramadan Meme Generator",
-  publisher: "Ramadan Meme Generator",
-
-  // Open Graph
+  // Basic Meta
+  title: 'Ramadan Meme Generator - تم تعبئة الكرش بنجاح',
+  description: 'Generate and share hilarious Ramadan-themed memes! مولد ميمز رمضان - Free meme generator for Ramadan 2026. Share with friends instantly!',
+  
+  // Open Graph (Facebook, WhatsApp, LinkedIn, etc.)
   openGraph: {
-    type: "website",
-    locale: "en_US",
-    alternateLocale: ["ar_AR", "fr_FR"],
-    url: "https://ramadan-meme-generator.vercel.app",
-    siteName: "Ramadan Meme Generator",
-    title: "Ramadan Meme Generator - تم تعبئة الكرش بنجاح",
-    description: "Generate and share hilarious Ramadan-themed memes instantly!",
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://ramadan-meme-generator.vercel.app/',
+    siteName: 'تم تعبئة الكرش بنجاح',
+    title: 'تم تعبئة الكرش بنجاح 🌙',
+    description: 'Generate and share hilarious Ramadan-themed memes! مبروك الكرش - Free meme generator.',
     images: [
       {
-        url: "/og-image.png",
+        url: 'https://ramadan-meme-generator.vercel.app/og-image.png', // Absolute URL
         width: 1200,
         height: 630,
-        alt: "Ramadan Meme Generator",
-      },
+        alt: 'تم تعبئة الكرش بنجاح',
+        type: 'image/png',
+      }
     ],
   },
-
+  
   // Twitter Card
   twitter: {
-    card: "summary_large_image",
-    title: "Ramadan Meme Generator - تم تعبئة الكرش بنجاح",
-    description: "Generate and share hilarious Ramadan-themed memes instantly!",
-    images: ["/twitter-image.png"],
-    creator: "@ramadanmemes",
+    card: 'summary_large_image',
+    title: 'تم تعبئة الكرش بنجاح',
+    description: 'Generate hilarious Ramadan memes! تم تعبئة الكرش بنجاح',
+    images: ['https://ramadan-meme-generator.vercel.app/og-image.png'],
+    creator: '@ramadanmemes', 
   },
-
+  
   // Additional
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
-
+  metadataBase: new URL('https://ramadan-meme-generator.vercel.app'),
+  
+  // For other platforms & PWA
+  manifest: "/site.webmanifest",
+  
   icons: {
     icon: "/logo.png",
     shortcut: "/logo.png",
     apple: "/logo.png",
   },
-
-  manifest: "/site.webmanifest",
-
+  
   alternates: {
     canonical: "https://ramadan-meme-generator.vercel.app",
   },
 
   other: {
-    "theme-color": "#1a0b2e", // midnight-purple
-    "color-scheme": "dark",
+    'og:image:width': '1200',
+    'og:image:height': '630',
     "mobile-web-app-capable": "yes",
     "apple-mobile-web-app-capable": "yes",
     "apple-mobile-web-app-status-bar-style": "black-translucent",
