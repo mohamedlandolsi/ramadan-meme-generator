@@ -44,6 +44,7 @@ export default function HomeClient() {
   }, [imageUrl]);
 
   const generateMeme = useCallback(async () => {
+    if (loading) return; // Prevent spam clicks
     setLoading(true);
     setError(null);
 
@@ -150,7 +151,14 @@ export default function HomeClient() {
           animation: loading ? "shimmer 1.5s ease-in-out infinite" : "none",
         }}
       >
-        {loading ? "Generating..." : "Generate Meme 🎲"}
+        {loading ? (
+          <span className="flex items-center gap-2">
+            <span className="animate-spin">⏳</span>
+            Generating...
+          </span>
+        ) : (
+          "Generate Meme 🎲"
+        )}
       </button>
 
       {/* ── Gallery Link ──────────────────────────────── */}
