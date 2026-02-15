@@ -127,3 +127,36 @@ body {
   filter: blur(60px);
   pointer-events: none;
 }
+
+/* ── Skeleton Pulse ────────────────────────────────── */
+@keyframes skeleton-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.15;
+  }
+}
+
+.skeleton-pulse {
+  animation: skeleton-pulse 1.5s ease-in-out infinite;
+  background: linear-gradient(
+    145deg,
+    rgba(74, 44, 107, 0.5),
+    rgba(45, 27, 78, 0.7)
+  );
+  border-radius: 1rem;
+}
+
+/* ── Modal Backdrop ────────────────────────────────── */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(12px);
+}

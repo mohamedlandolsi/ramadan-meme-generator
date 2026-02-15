@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import Link from "next/link";
 
 /* ── Star type ────────────────────────────────────── */
 interface Star {
@@ -139,6 +140,14 @@ export default function Home() {
       >
         {loading ? "Generating..." : "Generate Meme 🎲"}
       </button>
+
+      {/* ── Gallery Link ──────────────────────────────── */}
+      <Link
+        href="/gallery"
+        className="relative z-10 mt-4 inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-moon/80 transition-all duration-200 hover:bg-white/10 hover:text-moon md:mt-6"
+      >
+        Browse Gallery 📚
+      </Link>
 
       {/* ── Error Message ────────────────────────────── */}
       {error && (
